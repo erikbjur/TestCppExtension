@@ -1,0 +1,5 @@
+# ignore the build directory in the Application folder
+Application/Build
+
+# ignore the build directory in the Library folder
+Library/Build
