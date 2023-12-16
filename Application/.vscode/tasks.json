@@ -1,0 +1,89 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+            "type": "shell",
+            "label": "Set build directory",
+            "command": "if not exist ${config:buildDir} mkdir ${config:buildDir}",
+        },
+		{
+            "type": "shell",
+            "label": "Set intermediates directory",
+            "command": "if not exist ${config:intermediatesDir} mkdir ${config:intermediatesDir}",
+        },
+		{
+			"type": "cppbuild",
+			"label": "Compile and Link App",
+			"command": "${config:buildCommand}",
+			"args": [
+				"/Zi",
+				"/EHsc",
+				"/nologo",
+				"${workspaceFolder}\\**.cpp",			// Compile all the .cpp files in the workspace folder
+				"/Fe${config:buildDir}\\MyApp.exe",		// The final executible will be named MyApp.exe
+				"/Fo${config:intermediatesDir}\\",		// This is where all the intermediate files will go
+                "/Fd${config:buildDir}\\",
+				"/I",
+				"${workspaceFolder:Library}\\",
+				"${workspaceFolder:Library}\\Build\\MathLib.lib"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build",
+			"detail": "compiler: cl.exe",
+			"dependsOn": [
+                "Set build directory",
+				"Set intermediates directory"
+            ]
+		},
+		{
+			"type": "cppbuild",
+			"label": "Compile App",
+			"command": "${config:buildCommand}",
+			"args": [
+				"/c",
+				"/Zi",
+				"/EHsc",
+				"/nologo",
+				"${workspaceFolder}\\**.cpp",
+				"/Fo${config:intermediatesDir}\\",
+				"/I",
+				"${workspaceFolder:Library}\\"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build",
+			"detail": "compiler: cl.exe",
+			"dependsOn": [
+                "Set build directory",
+				"Set intermediates directory"
+            ]
+		},
+		{
+			"type": "cppbuild",
+			"label": "Link App",
+			"command": "${config:linkCommand}",
+			"args": [
+				"/OUT:MyApp.exe",
+				"${config:intermediatesDir}\\**.obj",
+				"${workspaceFolder:Library}\\Build\\MathLib.lib"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build",
+			"detail": "Linker: Link.exe"
+		},
+	]
+}

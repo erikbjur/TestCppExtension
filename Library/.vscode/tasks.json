@@ -1,0 +1,57 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+            "type": "shell",
+            "label": "Set build directory",
+            "command": "if not exist ${config:buildDir} mkdir ${config:buildDir}",
+        },
+		{
+            "type": "shell",
+            "label": "Set intermediates directory",
+            "command": "if not exist ${config:intermediatesDir} mkdir ${config:intermediatesDir}",
+        },
+		{
+			"type": "cppbuild",
+			"label": "Compile MathLib",
+			"command": "${config:buildCommand}",
+			"args": [
+				"/c",												//Compile only
+				//"/Zi",											//Debug
+				"/EHsc",											//Exception Mode
+				"/nologo",											//Don't display the logo
+				"${workspaceFolder}\\MathLib\\**.cpp",				//These are the files I want compiled
+				"/Fo${config:intermediatesDir}\\"  					//Here's where the output .obj files will go
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build",
+			"detail": "compiler: cl.exe",
+			"dependsOn":[
+				"Set build directory",
+				"Set intermediates directory"
+			]
+		},
+		{
+			"type": "cppbuild",
+			"label": "Make Static Lib: MathLib",
+			"command": "${config:libCommand}",
+			"args": [
+				"/OUT:MathLib.lib",						//These are the files I want compiled
+				"${config:intermediatesDir}\\**.obj"  	//Here's where the output .obj files will go
+			],
+			"options": {
+				"cwd": "${config:buildDir}"	
+			},
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": "build",
+			"detail": "Tool: lib.exe"
+		}
+	]
+}

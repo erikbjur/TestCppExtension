@@ -1,0 +1,7 @@
+{
+    "buildDir": "${workspaceFolder}\\Build",
+    "intermediatesDir": "${workspaceFolder}\\Build\\Intermediates",
+    "buildCommand": "C:\\Program^ Files\\Microsoft^ Visual^ Studio\\2022\\Community\\Common7\\Tools\\VsDevCmd.bat && cl",
+    "linkCommand": "C:\\Program^ Files\\Microsoft^ Visual^ Studio\\2022\\Community\\Common7\\Tools\\VsDevCmd.bat && link",
+    "libCommand": "C:\\Program^ Files\\Microsoft^ Visual^ Studio\\2022\\Community\\Common7\\Tools\\VsDevCmd.bat && lib",
+}

@@ -1,0 +1,20 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run MyApp",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${config:buildDir}\\MyApp.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${env:buildDir}",
+            "environment": [],
+            "console": "integratedTerminal",
+            //"preLaunchTask": "Compile and Link App"
+        }
+    ]
+}
