@@ -5,11 +5,13 @@
             "type": "shell",
             "label": "Set build directory",
             "command": "if not exist ${config:buildDir} mkdir ${config:buildDir}",
+			"hide": true
         },
 		{
             "type": "shell",
             "label": "Set intermediates directory",
             "command": "if not exist ${config:intermediatesDir} mkdir ${config:intermediatesDir}",
+			"hide": true
         },
 		{
 			"type": "cppbuild",
@@ -28,7 +30,7 @@
 				"${workspaceFolder:Library}\\Build\\MathLib.lib"
 			],
 			"options": {
-				"cwd": "${workspaceFolder}"
+				"cwd": "${config:buildDir}"
 			},
 			"problemMatcher": [
 				"$msCompile"
@@ -55,7 +57,7 @@
 				"${workspaceFolder:Library}\\"
 			],
 			"options": {
-				"cwd": "${workspaceFolder}"
+				"cwd": "${config:buildDir}"
 			},
 			"problemMatcher": [
 				"$msCompile"
@@ -77,7 +79,7 @@
 				"${workspaceFolder:Library}\\Build\\MathLib.lib"
 			],
 			"options": {
-				"cwd": "${workspaceFolder}"
+				"cwd": "${config:buildDir}"
 			},
 			"problemMatcher": [
 				"$msCompile"

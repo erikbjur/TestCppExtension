@@ -5,11 +5,13 @@
             "type": "shell",
             "label": "Set build directory",
             "command": "if not exist ${config:buildDir} mkdir ${config:buildDir}",
+			"hide": true
         },
 		{
             "type": "shell",
             "label": "Set intermediates directory",
             "command": "if not exist ${config:intermediatesDir} mkdir ${config:intermediatesDir}",
+			"hide": true
         },
 		{
 			"type": "cppbuild",
